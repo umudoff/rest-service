@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 public class MSISDNController {
@@ -20,17 +21,22 @@ public class MSISDNController {
     private ReservationService reservationService;
 
     @GetMapping("/search")
-    public ResponseEntity<List<MsisdnCategory>> search(@RequestParam(defaultValue = "all") String category,
+    public ResponseEntity<List<String>> search(@RequestParam(defaultValue = "all") String category,
                                                        @RequestParam(defaultValue = "empty") String msisdn) {
-        List<MsisdnCategory> msisdnList = categoryService.getMsisdnList(category, msisdn);
-        return new ResponseEntity<>(msisdnList, HttpStatus.OK);
+        List<String> msisdnList = categoryService.getMsisdnList(category, msisdn);
+
+        List<String> reserveLinks =
+                msisdnList.stream()
+                        .map(s->"http://localhost:8080/reserve/"+s)
+                        .collect(Collectors.toList());
+        return new ResponseEntity<>(reserveLinks, HttpStatus.OK);
     }
 
 
     @GetMapping("/notreserved")
-    public ResponseEntity<List<MsisdnCategory>> searchNotReserved(@RequestParam(defaultValue = "all") String category,
+    public ResponseEntity<List<String>> searchNotReserved(@RequestParam(defaultValue = "all") String category,
                                                        @RequestParam(defaultValue = "empty") String msisdn) {
-        List<MsisdnCategory> msisdnList = categoryService.getMsisdnList(category, msisdn);
+        List<String> msisdnList = categoryService.getMsisdnList(category, msisdn);
         return new ResponseEntity<>(msisdnList, HttpStatus.OK);
     }
 

@@ -18,7 +18,7 @@ public interface ReservationRepository extends JpaRepository<Reservation,Long> {
             " WHERE  r.START_DATE <= CURRENT_TIMESTAMP() and " +
             " CURRENT_TIMESTAMP()<= r.END_DATE " +
             " AND r.MSISDN = :msisdn ", nativeQuery = true)
-     List<Reservation> containsActiveReservation(@Param("msisdn")  String msisdn);
+     List<Reservation> msisdnListActiveReservation(@Param("msisdn")  String msisdn);
 
     @Query( value = " SELECT  COUNT(1)  FROM RESERVATION r " +
             " WHERE FORMATDATETIME(r.START_DATE,'yyyy-MM-dd') =  FORMATDATETIME(CURRENT_TIMESTAMP(),'yyyy-MM-dd') " +

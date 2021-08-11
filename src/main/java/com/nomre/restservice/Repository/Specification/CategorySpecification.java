@@ -14,7 +14,7 @@ public class CategorySpecification {
     public Specification<MsisdnCategory> getMsisdn(String category, String msisdnPattern ) {
         return (root, query, criteriaBuilder) -> {
             List<Predicate> predicates = new ArrayList<>();
-            if (category.isEmpty() || category.equals("all")) {
+            if (category.isEmpty() || category.toLowerCase().equals("all") ) {
                 predicates.add(criteriaBuilder.isTrue(criteriaBuilder.literal(true)));
             }else if (category != null) {
                 predicates.add(criteriaBuilder.equal(root.get("category"), category));

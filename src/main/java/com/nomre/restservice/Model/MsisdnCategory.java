@@ -14,7 +14,8 @@ public class MsisdnCategory {
     private String msisdn;
 
     @Column(name="CATEGORY")
-    private String category;
+    @Enumerated(EnumType.STRING)
+    private Category category;
 
 
     @OneToMany(mappedBy = "msisdnCategory", cascade = CascadeType.ALL)
@@ -23,12 +24,12 @@ public class MsisdnCategory {
     public MsisdnCategory() {
     }
 
-    public MsisdnCategory(String msisdn, String category) {
+    public MsisdnCategory(String msisdn, Category category) {
         this.msisdn = msisdn;
         this.category = category;
     }
 
-    public MsisdnCategory(String msisdn, String category, List<Reservation> reservations) {
+    public MsisdnCategory(String msisdn, Category category, List<Reservation> reservations) {
         this.msisdn = msisdn;
         this.category = category;
         this.reservations=reservations;
@@ -42,7 +43,7 @@ public class MsisdnCategory {
         return msisdn;
     }
 
-    public String getCategory() {
+    public Category getCategory() {
         return category;
     }
 
@@ -50,7 +51,7 @@ public class MsisdnCategory {
         this.msisdn = msisdn;
     }
 
-    public void setCategory(String category) {
+    public void setCategory(Category category) {
         this.category = category;
     }
 

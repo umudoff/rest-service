@@ -1,12 +1,12 @@
 package test.java.com.nomre.restservice;
 
-//import org.junit.jupiter.api.Test;
-//import org.springframework.boot.test.context.SpringBootTest;
+import org.junit.Test;
+import org.springframework.boot.test.context.SpringBootTest;
 
-//@SpringBootTest
+@SpringBootTest
 class RestServiceApplicationTests {
 
-	//@Test
+	@Test
 	void contextLoads() {
 	}
 

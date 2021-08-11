@@ -20,9 +20,9 @@ public interface CategoryRepository extends JpaRepository<MsisdnCategory,Long>, 
     @Query( value =  "select * from CATEGORY c " +
             "where NOT EXISTS (SELECT  CUST_MSISDN FROM RESERVATION r " +
             " WHERE  r.START_DATE <= CURRENT_TIMESTAMP() and " +
-            " CURRENT_TIMESTAMP()<= r.END_DATE " +
-            " AND r.MSISDN = c.MSISDN ) and (c.CATEGORY= :category OR :category='all'  OR :category ='') and lower(c.MSISDN) like  CONCAT('%', :pattern,'%') ", nativeQuery = true)
-    List<MsisdnCategory> getMsisdnCategoryWithOutReservation(@Param("category") String category , @Param("pattern")  String pattern);
+            " CURRENT_TIMESTAMP()<= r.END_DATE " + //and lower(c.MSISDN) like  CONCAT('%', :pattern,'%')
+            " AND r.MSISDN = c.MSISDN ) and (c.CATEGORY= :category OR lower(:category)='all'  OR :category ='') ", nativeQuery = true)
+    List<MsisdnCategory> getMsisdnCategoryWithOutReservation(@Param("category") String category);
 
 
     @Query("SELECT c FROM MsisdnCategory c WHERE c.msisdn=:msisdn")

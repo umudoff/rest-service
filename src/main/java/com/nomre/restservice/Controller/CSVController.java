@@ -35,20 +35,4 @@ public class CSVController {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(message);
     }
 
- /*   @GetMapping("/tutorials")
-    public ResponseEntity<List<DeveloperTutorial>> getAllTutorials() {
-        try {
-            List<DeveloperTutorial> tutorials = fileService.getAllTutorials();
-
-            if (tutorials.isEmpty()) {
-                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-            }
-
-            return new ResponseEntity<>(tutorials, HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    } */
-
-
 }

@@ -1,6 +1,7 @@
 package main.java.com.nomre.restservice.Service;
 
 import main.java.com.nomre.restservice.Helpers.CSVHelper;
+import main.java.com.nomre.restservice.Model.Category;
 import main.java.com.nomre.restservice.Model.MsisdnCategory;
 import main.java.com.nomre.restservice.Repository.CategoryRepository;
 import org.apache.commons.csv.CSVFormat;
@@ -43,7 +44,7 @@ public class CSVService {
 
                 for (CSVRecord csvRecord : csvParser) {
                     MsisdnCategory msisdnCategory = new MsisdnCategory(
-                            csvRecord.get("MSISDN"), csvRecord.get("CATEGORY"));
+                            csvRecord.get("MSISDN"), Category.valueOf(csvRecord.get("CATEGORY")));
                     msisdnCategoryList.add(msisdnCategory);
                     batchSize++;
                     if (batchSize == 10000) {
